@@ -1,0 +1,47 @@
+{
+    "name": "api-testing-template",
+    "version": "1.0.0",
+    "description": "Api testing template",
+    "scripts": {
+        "lint": "eslint src/** --ext .js",
+        "test": "npm run lint && jest",
+        "test:nolint": "jest",
+        "test:watch": "npm run lint && jest --watch",
+        "test:ci": "docker build -t api-testing-prod --file Dockerfile.Prod . && docker run --rm api-testing-prod",
+        "test:dev": "npm run lint && docker-compose up"
+    },
+    "keywords": [
+        "API",
+        "Testing",
+        "Javascript",
+        "Node",
+        "JS"
+    ],
+    "author": "vineetit1991@gmail.com",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint": "^7.2.0",
+        "eslint-config-airbnb-base": "^14.2.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-import": "^2.21.2",
+        "eslint-plugin-prettier": "^3.1.3",
+        "prettier": "^2.0.5"
+    },
+    "dependencies": {
+        "jest": "^26.0.1",
+        "ramda": "^0.27.0",
+        "supertest": "^4.0.2"
+    },
+    "engines": {
+        "node": ">=10"
+    },
+    "jest": {
+        "setupFilesAfterEnv": [
+            "./src/utils/setupFilesAfterEnv.js"
+        ],
+        "testTimeout": 30000,
+        "setupFiles": [
+            "./src/utils/setup.js"
+        ]
+    }
+}
